@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificado</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @page { margin: 0; }
+  body { margin: 0; }
+</style>
+<script>
+function getParam(name) {
+  var m = new RegExp('[?&]' + name + '=([^&#]*)').exec(location.search);
+  return m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : '';
+}
+function load() {
+  var html = getParam('PDF');
+  if (html) {
+    document.getElementById('content').innerHTML = html;
+    setTimeout(function () { window.print(); }, 800);
+  }
+}
+</script>
+</head>
+<body onload="load()">
+<div id="content"></div>
+</body>
+</html>
